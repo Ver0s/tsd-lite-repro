@@ -4,13 +4,13 @@ At our project we wanted to introcude type testing using `tsd-lite` along with
 `tsd-runner-jest`. We did a basic setup according to the docs to make a sort of
 MVP. The setup is mirrored in this repro repo.
 
-Essentially the problem that we encountered is that types from the global scope
-seem to break the type tests. In the above repro we're creating a type test but
-also importing some function that would potentially also be tested. This function
+The problem that we encountered is that types from the global scope
+seem to break the type tests. In this repro we're creating a type test but
+also importing a function to test its signature. This function
 is using a global type.
 
 After running `npx jest --config jest.config.tsd.js` you can see that type
-`ThisIsNull` cannot be found since it's used in the `id` function. The test would
+`ThisIsNull` cannot be found, but it is used in the `id` function. The test would
 also break if we used `ThisIsNull` directly in the type tests since it would not
 be recognized unless it's explicitly imported (which would make it non-global).
 
