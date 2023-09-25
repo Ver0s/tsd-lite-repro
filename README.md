@@ -6,7 +6,8 @@ MVP. The setup is mirrored in this repro repo.
 
 Essentially the problem that we encountered is that types from the global scope
 seem to break the type tests. In the above repro we're creating a type test but
-also importing some function that would potentially also be tested.
+also importing some function that would potentially also be tested. This function
+is using a global type.
 
 After running `npx jest --config jest.config.tsd.js` you can see that type
 `ThisIsNull` cannot be found since it's used in the `id` function. The test would
